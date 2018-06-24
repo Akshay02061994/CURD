@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9b715663074e41f69e866e903af6a32d" Name="Diagram1">
+        <EntityTypeShape EntityType="Test1Model.City" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Test1Model.Country" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Test1Model.Registration" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Test1Model.State" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="Test1Model.FK_Registration_City" ManuallyRouted="false" />
+        <AssociationConnector Association="Test1Model.FK_Registration_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="Test1Model.FK_Registration_State" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Test1Model.Course" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Test1Model.Login" Width="1.5" PointX="5.375" PointY="3.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

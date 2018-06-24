@@ -1,0 +1,266 @@
+﻿@model CURDEF1.Models.Registration
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutRegistration.cshtml";
+}
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @*@Html.HiddenFor(mode => Model.Id);*@
+    <div class="form-horizontal">
+        @*<div class="panel panel-default">*@
+            <h4>Registration Form</h4>
+            <hr/>
+
+            @Html.ValidationSummary(true,"",new { @class= "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model=>model.FirstName,htmlAttributes : new {@class="control-label col-md-2"})
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MiddleName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Gender, "Gender:", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    Male:@Html.RadioButtonFor(model => model.Gender, "Male")
+                    Female:@Html.RadioButtonFor(model => model.Gender, "Female")
+                    @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                    <span id="usrgen"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MobileNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.EmailId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Cources, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.CheckBoxFor(model => model.UG , ViewBag.UG as SelectList, new { style = "width:310px" })*@
+                    @*@Html.CheckBox("@UG", true)*@
+
+                    @*@for(int i = 0; i < Model.UGs.Count; i++)
+                           {
+                               if (i % 3 == 0)
+                               {
+                                   @:
+                }
+                                   @Html.CheckBoxFor(model => model.UGs[i].IsSelected)
+                                   <label>@Model.UGs[i].UGName</label>
+                                   @Html.HiddenFor(model => model.UGs[i].UGId)
+                                   @Html.HiddenFor(model => model.UGs[i].UGName)
+
+                           }*@
+
+                    @if (ViewBag.Courcelist != null)
+                {
+                    foreach (var item in @ViewBag.Courcelist as List<CURDEF1.Models.Course>)
+                    {
+
+                            <input type="checkbox" id="checkboxlist" value="@item.CouId" class="COU" />@item.CouName
+
+                        }
+                    }
+
+                    <input type="hidden" name="arrcou" id="array">
+                    @Html.ValidationMessageFor(model => model.Cources, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                     @Html.DropDownListFor(model => model.Country, ViewBag.Country as SelectList, "---SelectCountry---", new { style = "width:310px" })
+                    @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+
+                    @Html.DropDownListFor(model => model.State, new SelectList(""), "---SelectState---", new { style = "width:310px" })
+                    @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+
+                    @Html.DropDownListFor(model => model.City, new SelectList(""), "---SelectCity---", new { style = "width:310px" })
+                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NativePlace, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.NativePlace, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NativePlace, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" id="createbtn" onclick="return validateform()" class="btn btn-default" />
+                </div>
+            </div>
+
+        @*</div>*@
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back To List","Index")
+</div>
+
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        $("#Country").change(function () {
+            $.get("/Home/State_Bind", { CntId: $("#Country").val() }, function (data) {
+                $("#State").empty();
+                $.each(data, function (index, row) {
+                    $("#State").append("<option value='" + row.stId + "'>" + row.stName + "</option>")
+                })
+            })
+        })
+
+        $("#State").change(function () {
+            $.get("/Home/City_Bind", { stId: $("#State").val() }, function (data) {
+                $("#City").empty();
+                $.each(data, function (index, row) {
+                    $("#City").append("<option value='" + row.ctId + "'>" + row.ctName + "</option>")
+                })
+            })
+        })
+    });
+
+    $("#createbtn").on("click", function () {
+
+        var chkArray = [];
+
+        $(".COU").each(function () {
+            if ($(this).is(":checked"))
+            { chkArray.push($(this).val()); }
+        });
+
+        var selected = chkArray.join(',');
+        $('#array').val(selected);
+
+
+    });
+
+    function validateform() {
+        var isvalidate = true;
+        var re = /^\w+([\.-]?\w+)*@@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        var regExp = /^\d{10}$/;
+        var passw = /^[A-Za-z]\w{7,14}$/;
+
+        if ($('#FirstName').val() == '' && !regExp.test(String($('#FirstName').val()))) {
+
+            $('#FirstName').css('border-color', 'red');
+            $('#frstName').text("Enter First Name");
+            isvalidate = false;
+        }
+        else {
+            $('#FirstName').css('border-color', 'green');
+        }
+
+        if ($('#MiddleName').val() == '' && !regExp.test(String($('#MiddleName').val()))) {
+            $('#MiddleName').css('border-color', 'red');
+            $('#MiddleName').text("Enter Middle Name");
+            isvalidate = false;
+        }
+        else {
+            $('#MiddleName').css('border-color', 'green');
+        }
+
+        if ($('#LastName').val() == '' && !regExp.test(String($('#LastName').val()))) {
+            $('#LastName').css('border-color', 'red');
+            $('#LastName').text("Enter Last Name");
+            isvalidate = false;
+        }
+        else {
+            $('#LastName').css('border-color', 'green');
+        }
+
+        if ($('#MobileNumber').val() == '' || !regExp.test($('#MobileNumber').val())) {
+            $('#MobileNumber').css('border-color', 'red');
+            $('#MobileNumber').text("Enter 10 digit Mobile Number");
+            isvalidate = false;
+        }
+        else {
+            $('#MobileNumber').css('border-color', 'green');
+        }
+
+
+        if ($('#EmailId').val() == '' || !re.test(String($('#EmailId').val()))) {
+            $('#EmailId').css('border-color', 'red');
+            $('#EmailId').text("Enter valid Email Address");
+            isvalidate = false;
+        }
+        else {
+            $('#EmailId').css('border-color', 'green');
+        }
+
+        if ($('#NativePlace').val() == '' && !regExp.test(String($('#NativePlace').val()))) {
+            $('#NativePlace').css('border-color', 'red');
+            $('#NativePlace').text("Enter Last Name");
+            isvalidate = false;
+        }
+        else {
+            $('#NativePlace').css('border-color', 'green');
+        }
+        return isvalidate;
+
+    }
+</script>

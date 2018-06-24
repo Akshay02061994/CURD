@@ -1,0 +1,181 @@
+﻿@model IEnumerable<CURDEF1.Models.Registration>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutRegistration.cshtml";
+}
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link href="~/Content/jquerydatatablecss.css" rel="stylesheet" />
+<h2>Index</h2>
+<p>
+    @Html.ActionLink("Create", "Create", "Home")
+</p>
+<section class="content">
+    <div class="box">
+        <div class="box-body">
+           
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="table-responsive">
+                            <table id="Registration" class="table" >
+                                <thead>
+                                    <tr>
+                                        <th>FirstName</th>
+                                        <th>MiddleName</th>
+                                        <th>LastName</th>
+                                        <th>Gender</th>
+                                        <th>MobileNumber</th>
+                                        <th>EmailId</th>
+                                        <th>Cources</th>
+                                        <th>Country</th>
+                                        <th>State</th>
+                                        <th>City</th>
+                                        <th>NativePlace</th>
+                                        <th>Action</th>
+
+                                    </tr>
+                                
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.FirstName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.MiddleName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.LastName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Gender)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.MobileNumber)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.EmailId)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Cources)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Country1.cntName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.State1.stName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.City1.ctName)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.NativePlace)
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+</section>
+
+
+
+<script src="~/Content/jquerydatatablejs.js"></script>
+<script>
+    $(document).ready(function () {
+       
+        jQuery.noConflict();
+        
+        $("#Registration").DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false
+        });
+    });
+</script>
+
+
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Content/vendor/datatables/dataTables.bootstrap4.js"></script>*@
+    @*<script>
+        
+            $(function () {
+                //$("#Registration").DataTable();
+                $('#Registration').DataTable({
+                    "paging": true,
+                    "lengthChange": false,
+                    "searching": true,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": false
+                });
+            });
+        
+    </script>*@
+    
+
+
+@*<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MiddleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MobileNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cources)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.NativePlace)
+            </th>
+            <th></th>
+        </tr>
+
+        
+
+    </table>
+    </div>*@
